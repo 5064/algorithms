@@ -1,14 +1,31 @@
-# nまでのフィボナッチ数列を出力する再帰関数
+# 計算量膨大　O(2**n)くらい
+def bad_fibo(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+
+    return bad_fibo(n-1) + bad_fibo(n-2)
 
 
-def recursive_fibo(n, a, b):
-    if n < a:
-        return
-    print(a, end=' ')
-    recursive_fibo(n, b, a+b)
+# メモ化を使う
+def fibo(n, memo):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+
+    # メモをチェック
+    if memo[n] != -1:
+        return memo[n]
+    else:
+        memo[n] = fibo(n-1, memo) + fibo(n-2, memo)
+        return memo[n]
 
 
 if __name__ == "__main__":
-    FIRST = 0
-    SECOND = 1
-    recursive_fibo(int(input()), FIRST, SECOND)
+    N = int(input())
+
+    memo = [-1] * N
+    for n in range(N):
+        print(fibo(n, memo), end=' ')
