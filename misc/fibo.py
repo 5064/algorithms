@@ -1,4 +1,4 @@
-# 計算量膨大　O(2**n)くらい
+# 計算量膨大 O(2**n)くらい
 def bad_fibo(n):
     if n == 0:
         return 0
@@ -24,8 +24,10 @@ def fibo(n, memo):
 
 
 if __name__ == "__main__":
+    # N項目を表示する
     N = int(input())
 
-    memo = [-1] * N
-    for n in range(N):
-        print(fibo(n, memo), end=' ')
+    memo = [-1] * (N+1)
+    print(fibo(N, memo))
+
+    # print(bad_fibo(N), end=' ')
